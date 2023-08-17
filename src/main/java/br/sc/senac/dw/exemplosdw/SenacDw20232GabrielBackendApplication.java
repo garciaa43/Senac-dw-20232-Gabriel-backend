@@ -9,5 +9,4 @@ public class SenacDw20232GabrielBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SenacDw20232GabrielBackendApplication.class, args);
 	}
-
 }
