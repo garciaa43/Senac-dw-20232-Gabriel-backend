@@ -1,13 +1,11 @@
 package br.sc.senac.dw.exemplosdw.controller;
 
+import br.sc.senac.dw.exemplosdw.exception.CampoInvalidoException;
 import br.sc.senac.dw.exemplosdw.model.vo.ProdutoVO;
 import br.sc.senac.dw.exemplosdw.service.ProdutoService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +27,23 @@ public class ProdutoController {
     @GetMapping(path = "/{id}")
     public ProdutoVO consultarPorId(@PathVariable Integer id) {
         return produtoService.consultarPorId(id.longValue());
+    }
+
+    @PostMapping
+    public ProdutoVO salvar(@RequestBody ProdutoVO novoProduto) throws CampoInvalidoException {
+
+        return produtoService.inserir(novoProduto);
+    }
+
+    @PutMapping()
+    public boolean atualizar(@RequestBody ProdutoVO produtoAtualizado) throws CampoInvalidoException{
+
+        return produtoService.atualizar(produtoAtualizado) != null;
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean excluir(@PathVariable Integer id) {
+        return produtoService.excluir(id);
     }
 }
 

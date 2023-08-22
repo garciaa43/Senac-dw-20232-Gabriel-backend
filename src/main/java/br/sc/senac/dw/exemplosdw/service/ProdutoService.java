@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProdutoService {
@@ -24,5 +23,18 @@ public class ProdutoService {
 
     public ProdutoVO consultarPorId(Long id) {
         return produtoRepository.findById(id.longValue()).get();
+    }
+
+    public ProdutoVO inserir(ProdutoVO novoProduto) {
+        return produtoRepository.save(novoProduto);
+    }
+
+    public ProdutoVO atualizar(ProdutoVO produtoAtualizado) {
+        return produtoRepository.save(produtoAtualizado);
+    }
+
+    public boolean excluir(Integer id) {
+        produtoRepository.deleteById(id.longValue());
+        return true;
     }
 }
