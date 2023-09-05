@@ -1,6 +1,7 @@
 package br.sc.senac.dw.exemplosdw.specification;
 
 import br.sc.senac.dw.exemplosdw.model.vo.ProdutoVO;
+import br.sc.senac.dw.exemplosdw.seletor.FabricanteSeletor;
 import br.sc.senac.dw.exemplosdw.seletor.ProdutoSeletor;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -35,6 +36,11 @@ public class ProdutoSpecifications {
                         + seletor.getFabricante().toLowerCase() + "%"));
             }
 
+            if(seletor.getCnpj() != null) {
+                predicates.add(cb.equal(root.join("fabricante").get("cnpj"), seletor.getCnpj()));
+            }
+
+
             if(seletor.getPesoMinimo() != null && seletor.getPesoMaximo() != null) {
                 //WHERE peso BETWEEN min AND max
                 predicates.add(cb.between(root.get("peso"), seletor.getPesoMinimo(),
@@ -46,6 +52,15 @@ public class ProdutoSpecifications {
                 //WHERE peso <= max
                 predicates.add(cb.lessThanOrEqualTo(root.get("peso"), seletor.getPesoMaximo()));
             }
+
+            if(seletor.getValorMinimo() != null && seletor.getValorMaximo() != null) {
+                predicates.add(cb.between(root.get("valor"), seletor.getValorMinimo(),seletor.getValorMaximo()));
+            } else if(seletor.getValorMinimo() != null) {
+                predicates.add(cb.greaterThanOrEqualTo(root.get("valor"), seletor.getValorMinimo()));
+            } else if (seletor.getValorMaximo() != null) {
+                predicates.add(cb.lessThanOrEqualTo(root.get("valor"), seletor.getValorMaximo()));
+            }
+
 
             // TODO Adicionar outros filtros aqui
 //            private Double valorMinimo;

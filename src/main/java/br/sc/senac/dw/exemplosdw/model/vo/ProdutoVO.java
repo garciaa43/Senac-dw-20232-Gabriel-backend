@@ -14,14 +14,16 @@ public class ProdutoVO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private String fabricante;
+    @ManyToOne
+    @JoinColumn(name = "id_fabricante")
+    private Fabricante fabricante;
     private double valor;
     private double peso;
 
     private LocalDate data_cadastro;
 
 
-    public ProdutoVO(String nome, String fabricante, double valor, double peso, LocalDate data_cadastro) {
+    public ProdutoVO(String nome, Fabricante fabricante, double valor, double peso, LocalDate data_cadastro) {
         this.nome = nome;
         this.fabricante = fabricante;
         this.valor = valor;
@@ -41,7 +43,7 @@ public class ProdutoVO {
         return nome;
     }
 
-    public String getFabricante() {
+    public Fabricante getFabricante() {
         return fabricante;
     }
 
@@ -65,7 +67,7 @@ public class ProdutoVO {
         this.nome = nome;
     }
 
-    public void setFabricante(String fabricante) {
+    public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
     }
 

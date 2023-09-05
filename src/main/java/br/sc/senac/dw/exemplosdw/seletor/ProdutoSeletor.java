@@ -12,6 +12,25 @@ public class ProdutoSeletor extends BaseSeletor{
     private LocalDate dataCadastroInicial;
     private LocalDate dataCadastroFinal;
 
+    private String cnpj;
+
+
+    public ProdutoSeletor() {
+        super();
+    }
+
+    public ProdutoSeletor(String nome, String fabricante, Double valorMinimo, Double valorMaximo, Double pesoMinimo, Double pesoMaximo, LocalDate dataCadastroInicial, LocalDate dataCadastroFinal, String cnpj) {
+        this.nome = nome;
+        this.fabricante = fabricante;
+        this.valorMinimo = valorMinimo;
+        this.valorMaximo = valorMaximo;
+        this.pesoMinimo = pesoMinimo;
+        this.pesoMaximo = pesoMaximo;
+        this.dataCadastroInicial = dataCadastroInicial;
+        this.dataCadastroFinal = dataCadastroFinal;
+        this.cnpj = cnpj;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -74,5 +93,13 @@ public class ProdutoSeletor extends BaseSeletor{
 
     public void setDataCadastroFinal(LocalDate dataCadastroFinal) {
         this.dataCadastroFinal = dataCadastroFinal;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 }

@@ -14,6 +14,7 @@ public class Fabricante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    private String cnpj;
 
     @JsonBackReference
     @OneToMany(mappedBy = "fabricante")
@@ -23,11 +24,14 @@ public class Fabricante {
         super();
     }
 
-    public Fabricante(Integer id, String nome, List<ProdutoVO> produtos) {
+
+
+    public Fabricante(Integer id, String nome, List<ProdutoVO> produtos, String cnpj) {
         super();
         this.id = id;
         this.nome = nome;
         this.produtos = produtos;
+        this.cnpj = cnpj;
     }
 
 
@@ -58,6 +62,15 @@ public class Fabricante {
 
     public void setProdutos(List<ProdutoVO> produtos) {
         this.produtos = produtos;
+    }
+
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
 }

@@ -2,6 +2,8 @@ package br.sc.senac.dw.exemplosdw.controller;
 
 import br.sc.senac.dw.exemplosdw.exception.CampoInvalidoException;
 import br.sc.senac.dw.exemplosdw.model.vo.ProdutoVO;
+import br.sc.senac.dw.exemplosdw.seletor.FabricanteSeletor;
+import br.sc.senac.dw.exemplosdw.seletor.ProdutoSeletor;
 import br.sc.senac.dw.exemplosdw.service.ProdutoService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,11 @@ public class ProdutoController {
     public ProdutoVO salvar(@RequestBody ProdutoVO novoProduto) throws CampoInvalidoException {
 
         return produtoService.inserir(novoProduto);
+    }
+
+    @PostMapping("/filtro")
+    public List<ProdutoVO> listarComSeletor(@RequestBody ProdutoSeletor seletor){
+        return produtoService.listarComSeletor(seletor);
     }
 
     @PutMapping()
