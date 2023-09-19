@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "fabricantes")
-public class Fabricante {
+public class FabricanteVO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,22 +16,31 @@ public class Fabricante {
     private String nome;
     private String cnpj;
 
+    private String cep;
+
+    private String cidade;
+
+    private String uf;
+
     @JsonBackReference
-    @OneToMany(mappedBy = "fabricante")
+    @OneToMany(mappedBy = "fabricanteVO")
     private List<ProdutoVO> produtos;
 
-    public Fabricante() {
+    public FabricanteVO() {
         super();
     }
 
 
 
-    public Fabricante(Integer id, String nome, List<ProdutoVO> produtos, String cnpj) {
+    public FabricanteVO(Integer id, String nome, List<ProdutoVO> produtos, String cnpj, String cep, String cidade, String uf) {
         super();
         this.id = id;
         this.nome = nome;
         this.produtos = produtos;
         this.cnpj = cnpj;
+        this.cep = cep;
+        this.cidade = cidade;
+        this.uf = uf;
     }
 
 
@@ -73,6 +82,29 @@ public class Fabricante {
         this.cnpj = cnpj;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
 }
 
 

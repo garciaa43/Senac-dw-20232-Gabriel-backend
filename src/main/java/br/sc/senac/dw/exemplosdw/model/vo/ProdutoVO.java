@@ -1,9 +1,6 @@
 package br.sc.senac.dw.exemplosdw.model.vo;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 @Entity
@@ -16,16 +13,17 @@ public class ProdutoVO {
     private String nome;
     @ManyToOne
     @JoinColumn(name = "id_fabricante")
-    private Fabricante fabricante;
+    private FabricanteVO fabricanteVO;
     private double valor;
     private double peso;
 
+    @Column(name = "data_cadastro")
     private LocalDate data_cadastro;
 
 
-    public ProdutoVO(String nome, Fabricante fabricante, double valor, double peso, LocalDate data_cadastro) {
+    public ProdutoVO(String nome, FabricanteVO fabricanteVO, double valor, double peso, LocalDate data_cadastro) {
         this.nome = nome;
-        this.fabricante = fabricante;
+        this.fabricanteVO = fabricanteVO;
         this.valor = valor;
         this.peso = peso;
         this.data_cadastro = data_cadastro;
@@ -43,8 +41,8 @@ public class ProdutoVO {
         return nome;
     }
 
-    public Fabricante getFabricante() {
-        return fabricante;
+    public FabricanteVO getFabricante() {
+        return fabricanteVO;
     }
 
     public double getValor() {
@@ -67,8 +65,8 @@ public class ProdutoVO {
         this.nome = nome;
     }
 
-    public void setFabricante(Fabricante fabricante) {
-        this.fabricante = fabricante;
+    public void setFabricante(FabricanteVO fabricanteVO) {
+        this.fabricanteVO = fabricanteVO;
     }
 
     public void setValor(double valor) {
